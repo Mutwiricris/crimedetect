@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: crimedetect-api
+    runtime: python
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --workers 1
+    envVars:
+      - key: API_KEY
+        generateValue: true          # Render auto-generates a secure random value
+      - key: ALLOWED_ORIGINS
+        value: "*"                   # Replace with your Laravel app URL in production
+      - key: PORT
+        value: "8000"
+    disk:
+      name: models
+      mountPath: /opt/render/project/src/models
+      sizeGB: 1                      # Model files are ~200-400 MB total
