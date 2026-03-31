@@ -158,7 +158,12 @@ class FeatureExtractor:
         if input_type == "url":
             return extract_url_features(str(raw_data))
         elif input_type == "network":
-            d = raw_data if isinstance(raw_data, dict) else raw_data.dict()
+            if isinstance(raw_data, dict):
+                d = raw_data
+            elif hasattr(raw_data, "model_dump"):
+                d = raw_data.model_dump()
+            else:
+                d = raw_data.dict()
             return extract_network_features(d)
         elif input_type == "cyberbullying":
             if hasattr(raw_data, "model_dump"):

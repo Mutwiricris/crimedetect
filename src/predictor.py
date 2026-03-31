@@ -13,7 +13,7 @@ from src.config import MODELS_DIR
 
 class CrimeDetector:
     # Maps (model_type, predicted_class_idx) → human-readable threat category
-    _URL_CLASSES = {0: "Phishing", 1: "Legitimate"}
+    _URL_CLASSES = {0: "Legitimate", 1: "Phishing"}
     _NET_CLASSES = {0: "Normal", 1: "Attack"}
     _CB_CLASSES  = {0: "Safe",    1: "Cyberbullying"}
 

@@ -225,9 +225,10 @@ async def batch_analyze(
 @app.exception_handler(422)
 async def validation_exception_handler(request: Request, exc):
     """Return clean JSON on validation failures."""
+    errors = exc.errors() if callable(getattr(exc, "errors", None)) else str(exc)
     return JSONResponse(
         status_code=422,
-        content={"detail": "Request validation failed", "errors": str(exc.errors())},
+        content={"detail": "Request validation failed", "errors": str(errors)},
     )
 
 

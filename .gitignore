@@ -19,6 +19,7 @@ env/
 *.log
 *.pid
 *.txt
+!requirements.txt
 check*.log
 final*.log
 local_test*.py
